@@ -1,14 +1,16 @@
 from fastapi import FastAPI
 from app.core.database import create_tables
-
-# Import all models so Base knows about them
 from app.models import user, groups, groupmembers, expense, split, settlement
+from app.api.routes import auth
 
 app = FastAPI(
     title="SplitKaro API",
     description="India-first smart expense splitter",
     version="1.0.0"
 )
+
+# Register routes
+app.include_router(auth.router)
 
 @app.on_event("startup")
 def startup():
