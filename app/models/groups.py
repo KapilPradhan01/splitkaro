@@ -8,6 +8,7 @@ class Group(Base):
 
     id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
     name = Column(String(200), nullable=False)
+    description = Column(String(500), nullable=True)   # ← add this
     created_by = Column(String, nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     is_active = Column(Boolean, default=True)
