@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.core.database import create_tables
-from app.models import user, groups, groupmembers, expense, split, settlement
+from app.api.routes import auth, groups as groups_router, expenses as expenses_router
 from app.api.routes import auth, groups as groups_router
 
 app = FastAPI(
@@ -11,6 +11,7 @@ app = FastAPI(
 
 app.include_router(auth.router)
 app.include_router(groups_router.router)
+app.include_router(expenses_router.router)
 
 @app.on_event("startup")
 def startup():
